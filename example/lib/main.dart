@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isLoading = false;
       details = data.toJson();
     });
-    print(data.address.village);
+    print(data.address?.village);
   }
 
   @override

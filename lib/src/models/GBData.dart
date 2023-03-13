@@ -7,28 +7,28 @@ String gbDataToJson(GBData data) => json.encode(data.toJson());
 
 class GBData {
   GBData({
-    required this.placeId,
-    required this.osmType,
-    required this.id,
-    required this.lat,
-    required this.lon,
-    required this.placeRank,
-    required this.importance,
-    required this.displayName,
-    required this.address,
-    required this.boundingbox,
+    this.placeId,
+    this.osmType,
+    this.id,
+    this.lat,
+    this.lon,
+    this.placeRank,
+    this.importance,
+    this.displayName,
+    this.address,
+    this.boundingbox,
   });
 
-  int placeId;
-  String osmType;
-  int id;
-  String lat;
-  String lon;
-  int placeRank;
-  double importance;
-  String displayName;
-  Address address;
-  List<String> boundingbox;
+  int? placeId;
+  String? osmType;
+  int? id;
+  String? lat;
+  String? lon;
+  int? placeRank;
+  double? importance;
+  String? displayName;
+  Address? address;
+  List<String>? boundingbox;
 
   factory GBData.fromJson(Map<String, dynamic> json) => GBData(
         placeId: json["place_id"],
@@ -52,33 +52,33 @@ class GBData {
         "place_rank": placeRank,
         "importance": importance,
         "display_name": displayName,
-        "address": address.toJson(),
-        "boundingbox": List<dynamic>.from(boundingbox.map((x) => x)),
+        "address": address?.toJson(),
+        "boundingbox": List<dynamic>.from(boundingbox?.map((x) => x) ?? []),
       };
 }
 
 class Address {
   Address({
-    required this.road,
-    required this.village,
-    required this.county,
-    required this.stateDistrict,
-    required this.state,
-    required this.iso31662Lvl4,
-    required this.postcode,
-    required this.country,
-    required this.countryCode,
+    this.road,
+    this.village,
+    this.county,
+    this.stateDistrict,
+    this.state,
+    this.iso31662Lvl4,
+    this.postcode,
+    this.country,
+    this.countryCode,
   });
 
-  String road;
-  String village;
-  String county;
-  String stateDistrict;
-  String state;
-  String iso31662Lvl4;
-  String postcode;
-  String country;
-  String countryCode;
+  String? road;
+  String? village;
+  String? county;
+  String? stateDistrict;
+  String? state;
+  String? iso31662Lvl4;
+  String? postcode;
+  String? country;
+  String? countryCode;
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
         road: json["road"],

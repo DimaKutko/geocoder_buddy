@@ -9,14 +9,13 @@ class GeocoderBuddy {
   }
 
   static Future<GBData> searchToGBData(GBSearchData data) async {
-    var pos =
-        GBLatLng(lat: double.parse(data.lat), lng: double.parse(data.lon));
+    var pos = GBLatLng(lat: double.parse(data.lat), lng: double.parse(data.lon));
     var res = await NetworkService.getDetails(pos);
     return res;
   }
 
-  static Future<GBData> findDetails(GBLatLng pos) async {
-    var data = await NetworkService.getDetails(pos);
+  static Future<GBData> findDetails(GBLatLng pos, {String? lang}) async {
+    var data = await NetworkService.getDetails(pos, lang: lang);
     return data;
   }
 }

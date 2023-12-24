@@ -7,8 +7,7 @@ const PATH = "https://nominatim.openstreetmap.org";
 
 class NetworkService {
   static Future<List<MapData>> searhAddress(String query) async {
-    var request =
-        http.Request('GET', Uri.parse("$PATH/search?q=$query&format=jsonv2"));
+    var request = http.Request('GET', Uri.parse("$PATH/search?q=$query&format=jsonv2"));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
@@ -18,12 +17,12 @@ class NetworkService {
     }
   }
 
-  static Future<GBData> getDetails(GBLatLng pos) async {
-    var request = http.Request('GET',
-        Uri.parse('$PATH/reverse?lat=${pos.lat}&lon=${pos.lng}&format=jsonv2'));
-
+  static Future<GBData> getDetails(GBLatLng pos, {String? lang}) async {
+    var path = '$PATH/reverse?lat=${pos.lat}&lon=${pos.lng}&format=jsonv2';
+    if (lang?.isNotEmpty ?? false) path = '$path&accept-language=$lang';
+    final uri = Uri.parse(path);
+    var request = http.Request('GET', uri);
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
       return gbDataFromJson(data);
